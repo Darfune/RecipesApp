@@ -8,16 +8,16 @@
     <fragment
         android:id="@+id/recipesFragment"
         android:name="com.example.recipesapp.fragment.RecipesFragment"
-        android:label="fragment_recipes"
+        android:label="Recipes"
         tools:layout="@layout/fragment_recipes" />
     <fragment
         android:id="@+id/favoriteRecipesFragment"
         android:name="com.example.recipesapp.fragment.FavoriteRecipesFragment"
-        android:label="fragment_favorite_recipes"
+        android:label="Favorites"
         tools:layout="@layout/fragment_favorite_recipes" />
     <fragment
         android:id="@+id/categoriesFragment"
         android:name="com.example.recipesapp.fragment.CategoriesFragment"
-        android:label="fragment_categories"
+        android:label="Categories"
         tools:layout="@layout/fragment_categories" />
 </navigation>
