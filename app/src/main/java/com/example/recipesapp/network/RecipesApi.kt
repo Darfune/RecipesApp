@@ -8,6 +8,6 @@ import javax.inject.Singleton
 interface RecipesApi {
 
     @GET("search.php?s=")
-    suspend fun getRecipes(): ListOfMeals
+    suspend fun getMeals(): ListOfMeals
 
 }
