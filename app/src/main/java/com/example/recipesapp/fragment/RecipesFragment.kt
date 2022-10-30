@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.recipesapp.MainViewModel
 import com.example.recipesapp.R
@@ -29,6 +30,8 @@ class RecipesFragment : Fragment() {
         // Inflate the layout for this fragment
         mealView = inflater.inflate(R.layout.fragment_recipes, container, false)
         recyclerView = mealView.findViewById(R.id.mealsRecyclerView)
+        recyclerView.adapter = mealsAdapter
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         mainViewModel = ViewModelProvider(requireActivity())[MainViewModel::class.java]
 

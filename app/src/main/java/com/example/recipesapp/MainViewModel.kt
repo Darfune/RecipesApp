@@ -33,6 +33,7 @@ class MainViewModel @Inject constructor(
                 when (val result = recipesRepository.getMeals()) {
                     is Resource.Success -> {
                         mealsResponse.value = result
+                        Log.d("MainViewModel", "getMeals: ${mealsResponse.value}")
                         isLoading = false
                     }
                     is Resource.Error -> {
