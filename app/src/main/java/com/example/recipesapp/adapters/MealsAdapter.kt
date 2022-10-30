@@ -1,6 +1,5 @@
 package com.example.recipesapp.adapters
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -16,8 +15,8 @@ class MealsAdapter : RecyclerView.Adapter<MealsAdapter.MealsViewHolder>() {
 
     class MealsViewHolder(private val binding: MealsRowLayoutBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(meals: Meal) {
-            binding.mealsList = meals
+        fun bind(meal: Meal) {
+            binding.mealData = meal
             binding.executePendingBindings()
         }
 

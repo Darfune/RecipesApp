@@ -1,71 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="200dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="150dp"
     android:layout_marginTop="4dp"
     android:layout_marginBottom="4dp">
 
-    <View
-        android:id="@+id/view"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:background="@color/LightGray"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
 
-    <View
-        android:id="@+id/titleView"
-        android:layout_width="0dp"
-        android:layout_height="35dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="12dp"
-        android:background="@color/LightGray"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/view"
-        app:layout_constraintTop_toTopOf="parent" />
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimmerRowLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <View
-        android:id="@+id/categoryView"
-        android:layout_width="0dp"
-        android:layout_height="25dp"
-        android:background="@color/LightGray"
-        android:layout_marginTop="12dp"
-        app:layout_constraintEnd_toEndOf="@+id/titleView"
-        app:layout_constraintStart_toStartOf="@+id/titleView"
-        app:layout_constraintTop_toBottomOf="@+id/titleView" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    <View
-        android:id="@+id/areaView"
-        android:layout_width="0dp"
-        android:layout_height="25dp"
-        android:background="@color/LightGray"
-        android:layout_marginTop="12dp"
-        app:layout_constraintEnd_toEndOf="@+id/categoryView"
-        app:layout_constraintStart_toStartOf="@+id/categoryView"
-        app:layout_constraintTop_toBottomOf="@+id/categoryView" />
+            <View
+                android:id="@+id/view"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:background="@color/LightGray"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    <View
-        android:id="@+id/favoriteView"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:background="@color/LightGray"
-        app:layout_constraintStart_toEndOf="@+id/view"
-        app:layout_constraintTop_toBottomOf="@+id/areaView"
-        android:layout_marginTop="12dp"
-        android:layout_marginStart="12dp"/>
+            <View
+                android:id="@+id/titleView"
+                android:layout_width="0dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="12dp"
+                android:background="@color/LightGray"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/view"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    <View
-        android:id="@+id/videoView"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:background="@color/LightGray"
-        app:layout_constraintStart_toEndOf="@+id/favoriteView"
-        app:layout_constraintTop_toBottomOf="@+id/areaView"
-        android:layout_marginTop="12dp"
-        android:layout_marginStart="12dp"/>
+            <View
+                android:id="@+id/categoryView"
+                android:layout_width="0dp"
+                android:layout_height="18dp"
+                android:layout_marginTop="12dp"
+                android:background="@color/LightGray"
+                app:layout_constraintEnd_toEndOf="@+id/titleView"
+                app:layout_constraintStart_toStartOf="@+id/titleView"
+                app:layout_constraintTop_toBottomOf="@+id/titleView" />
+
+            <View
+                android:id="@+id/areaView"
+                android:layout_width="0dp"
+                android:layout_height="18dp"
+                android:layout_marginTop="12dp"
+                android:background="@color/LightGray"
+                app:layout_constraintEnd_toEndOf="@+id/categoryView"
+                app:layout_constraintStart_toStartOf="@+id/categoryView"
+                app:layout_constraintTop_toBottomOf="@+id/categoryView" />
+
+            <View
+                android:id="@+id/favoriteView"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="12dp"
+                android:background="@color/LightGray"
+                app:layout_constraintStart_toEndOf="@+id/view"
+                app:layout_constraintTop_toBottomOf="@+id/areaView" />
+
+            <View
+                android:id="@+id/videoView"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="12dp"
+                android:background="@color/LightGray"
+                app:layout_constraintStart_toEndOf="@+id/favoriteView"
+                app:layout_constraintTop_toBottomOf="@+id/areaView" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.facebook.shimmer.ShimmerFrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+

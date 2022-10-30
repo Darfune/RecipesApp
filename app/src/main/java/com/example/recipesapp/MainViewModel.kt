@@ -24,8 +24,8 @@ class MainViewModel @Inject constructor(
     application: Application
 ) : AndroidViewModel(application) {
 
-    private var mealsResponse: MutableLiveData<Resource<ListOfMeals>> = MutableLiveData()
-    private var isLoading: Boolean by mutableStateOf(true)
+    var mealsResponse: MutableLiveData<Resource<ListOfMeals>> = MutableLiveData()
+    var isLoading: Boolean by mutableStateOf(true)
 
     fun getMeals() = viewModelScope.launch {
         if (hasInternetConnection()) {
