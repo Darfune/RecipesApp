@@ -6,6 +6,28 @@
     android:layout_height="match_parent"
     tools:context=".fragment.RecipesFragment">
 
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/mealsShimmerLayout">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <include layout="@layout/placeholder_row_layout"/>
+            <include layout="@layout/placeholder_row_layout"/>
+            <include layout="@layout/placeholder_row_layout"/>
+            <include layout="@layout/placeholder_row_layout"/>
+            <include layout="@layout/placeholder_row_layout"/>
+            <include layout="@layout/placeholder_row_layout"/>
+            <include layout="@layout/placeholder_row_layout"/>
+
+        </LinearLayout>
+
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/mealsRecyclerView"
         android:layout_width="0dp"
@@ -13,6 +35,7 @@
         android:orientation="vertical"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
