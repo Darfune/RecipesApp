@@ -1,4 +1,4 @@
-package com.example.recipesapp.fragment
+package com.example.recipesapp.fragment.recipes
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -15,6 +15,7 @@ import com.example.recipesapp.MainViewModel
 import com.example.recipesapp.R
 import com.example.recipesapp.adapters.MealsAdapter
 import com.example.recipesapp.data.Resource
+import com.example.recipesapp.databinding.FragmentRecipesBinding
 import com.example.recipesapp.models.meals.ListOfMeals
 import com.facebook.shimmer.ShimmerFrameLayout
 import dagger.hilt.android.AndroidEntryPoint
@@ -22,8 +23,9 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class RecipesFragment : Fragment() {
 
+    private lateinit var _binding: FragmentRecipesBinding
     private lateinit var mealView: View
-    private lateinit var mainViewModel: MainViewModel
+    private lateinit var recipesViewModel: RecipesViewModel
     private val mealsAdapter by lazy { MealsAdapter() }
 
     private lateinit var recyclerView: RecyclerView
@@ -31,14 +33,22 @@ class RecipesFragment : Fragment() {
     private lateinit var noConnectionTextView: TextView
     private lateinit var noConnectionImageView: ImageView
 
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        recipesViewModel = ViewModelProvider(requireActivity())[RecipesViewModel::class.java]
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        mealView = inflater.inflate(R.layout.fragment_recipes, container, false)
-
+        _binding = FragmentRecipesBinding.inflate(inflater, container, false)
+//        mealView = inflater.inflate(R.layout.fragment_recipes, container, false)
+        mealView = _binding.root
         shimmerLayout = mealView.findViewById(R.id.mealsShimmerLayout)
+        shimmerLayout.startShimmer()
 
         recyclerView = mealView.findViewById(R.id.mealsRecyclerView)
         recyclerView.adapter = mealsAdapter
@@ -46,36 +56,26 @@ class RecipesFragment : Fragment() {
         noConnectionTextView = mealView.findViewById(R.id.noConnectionTextView)
         noConnectionImageView = mealView.findViewById(R.id.noConnectionImageView)
 
-
-        mainViewModel = ViewModelProvider(requireActivity())[MainViewModel::class.java]
-
         requestApiData()
 
         return mealView
     }
 
     private fun requestApiData() {
-        mainViewModel.getMeals()
-        mainViewModel.mealsResponse.observe(viewLifecycleOwner) { response ->
+        recipesViewModel.getMeals()
+        recipesViewModel.mealsResponse.observe(viewLifecycleOwner) { response ->
             when (response) {
-                is Resource.Success -> {
-
-                    setupRecyclerView(response)
-                }
-                is Resource.Error -> {
-                    showErrorView(response)
-
-
-                }
+                is Resource.Success -> setupRecyclerView(response)
+                is Resource.Error -> showErrorView(response)
                 is Resource.Loading -> {
 
                 }
             }
-
         }
     }
 
     private fun showErrorView(response: Resource.Error<ListOfMeals>) {
+//        _binding.
         shimmerLayout.stopShimmer()
         shimmerLayout.visibility = View.GONE
         noConnectionTextView.visibility = View.VISIBLE

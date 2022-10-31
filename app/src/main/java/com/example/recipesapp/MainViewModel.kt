@@ -20,46 +20,5 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    private val recipesRepository: RecipesRepository,
     application: Application
-) : AndroidViewModel(application) {
-
-    var mealsResponse: MutableLiveData<Resource<ListOfMeals>> = MutableLiveData()
-    var isLoading: Boolean by mutableStateOf(true)
-
-    fun getMeals() = viewModelScope.launch {
-        if (hasInternetConnection()) {
-            try {
-                when (val result = recipesRepository.getMeals()) {
-                    is Resource.Success -> {
-                        mealsResponse.value = result
-                        Log.d("MainViewModel", "getMeals: ${mealsResponse.value}")
-                        isLoading = false
-                    }
-                    is Resource.Error -> {
-                        Log.e("MainViewModel", "getMeals: Failed to get response")
-                        isLoading = false
-                    }
-                    else -> isLoading = false
-                }
-            } catch (exception: Exception) {
-                Log.d("MainViewModel", "getMeals: ${exception.message.toString()}")
-            }
-        } else mealsResponse.value = Resource.Error("No Internet Connection")
-    }
-
-    private fun hasInternetConnection(): Boolean {
-        val connectivityManager = getApplication<Application>().getSystemService(
-            Context.CONNECTIVITY_SERVICE
-        ) as ConnectivityManager
-        val activityNetwork = connectivityManager.activeNetwork ?: return false
-        val capabilities =
-            connectivityManager.getNetworkCapabilities(activityNetwork) ?: return false
-        return when {
-            capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
-            capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> true
-            capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> true
-            else -> false
-        }
-    }
-}
+) : AndroidViewModel(application)
