@@ -25,7 +25,7 @@ class RecipesFragment : Fragment() {
 
     private lateinit var _binding: FragmentRecipesBinding
     private lateinit var mealView: View
-    private lateinit var recipesViewModel: RecipesViewModel
+    private lateinit var mainViewModel: MainViewModel
     private val mealsAdapter by lazy { MealsAdapter() }
 
     private lateinit var recyclerView: RecyclerView
@@ -36,7 +36,7 @@ class RecipesFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        recipesViewModel = ViewModelProvider(requireActivity())[RecipesViewModel::class.java]
+        mainViewModel = ViewModelProvider(requireActivity())[MainViewModel::class.java]
     }
 
     override fun onCreateView(
@@ -62,8 +62,8 @@ class RecipesFragment : Fragment() {
     }
 
     private fun requestApiData() {
-        recipesViewModel.getMeals()
-        recipesViewModel.mealsResponse.observe(viewLifecycleOwner) { response ->
+        mainViewModel.getMeals()
+        mainViewModel.mealsResponse.observe(viewLifecycleOwner) { response ->
             when (response) {
                 is Resource.Success -> setupRecyclerView(response)
                 is Resource.Error -> showErrorView(response)
