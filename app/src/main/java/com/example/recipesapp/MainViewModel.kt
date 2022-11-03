@@ -66,10 +66,9 @@ class MainViewModel @Inject constructor(
         } else mealsResponse.value = Resource.Error("No Internet Connection")
     }
 
-    private fun offlineCacheMealRecipes(mealRecipe: ListOfMeals) {
-        for (i:Int in 0..mealRecipe.size())
-            insertMeals(MealsEntity(mealRecipe[i]))
-    }
+    // Insert data to database
+    private fun offlineCacheMealRecipes(mealRecipe: ListOfMeals) =
+        insertMeals(MealsEntity(mealRecipe))
 
     // Internet permission
     private fun hasInternetConnection(): Boolean {
