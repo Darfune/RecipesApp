@@ -6,37 +6,27 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.recipesapp.MainViewModel
-import com.example.recipesapp.R
 import com.example.recipesapp.adapters.MealsAdapter
 import com.example.recipesapp.data.Resource
 import com.example.recipesapp.databinding.FragmentRecipesBinding
 import com.example.recipesapp.models.meals.ListOfMeals
 import com.example.recipesapp.utils.observeOnce
-import com.facebook.shimmer.ShimmerFrameLayout
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class RecipesFragment : Fragment() {
 
-    private lateinit var _binding: FragmentRecipesBinding
-    private lateinit var mealView: View
+    private var _binding: FragmentRecipesBinding? = null
+    private val binding get() = _binding!!
+
     private lateinit var mainViewModel: MainViewModel
     private val mealsAdapter by lazy { MealsAdapter() }
-
-    private lateinit var recyclerView: RecyclerView
-    private lateinit var shimmerLayout: ShimmerFrameLayout
-    private lateinit var noConnectionTextView: TextView
-    private lateinit var noConnectionImageView: ImageView
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,19 +39,18 @@ class RecipesFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         _binding = FragmentRecipesBinding.inflate(inflater, container, false)
-//        mealView = inflater.inflate(R.layout.fragment_recipes, container, false)
-        mealView = _binding.root
-        shimmerLayout = mealView.findViewById(R.id.mealsShimmerLayout)
-        shimmerLayout.startShimmer()
+        binding.lifecycleOwner = this
+        binding.mainViewModel = mainViewModel
 
-        recyclerView = mealView.findViewById(R.id.mealsRecyclerView)
-        recyclerView.adapter = mealsAdapter
-        recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        noConnectionTextView = mealView.findViewById(R.id.noConnectionTextView)
-        noConnectionImageView = mealView.findViewById(R.id.noConnectionImageView)
-
+        initRecyclerView()
         readDatabase()
-        return mealView
+
+        return binding.root
+    }
+
+    private fun initRecyclerView() {
+        binding.mealsRecyclerView.adapter = mealsAdapter
+        binding.mealsRecyclerView.layoutManager = LinearLayoutManager(requireContext())
     }
 
     private fun readDatabase() {
@@ -95,8 +84,8 @@ class RecipesFragment : Fragment() {
             mainViewModel.readMeals.observe(viewLifecycleOwner) { database ->
                 if (database.isNotEmpty()) mealsAdapter.setData(database[0].meals)
                 else {
-                    noConnectionTextView.visibility = View.VISIBLE
-                    noConnectionImageView.visibility = View.VISIBLE
+                    binding.noConnectionTextView.visibility = View.VISIBLE
+                    binding.noConnectionImageView.visibility = View.VISIBLE
                 }
             }
         }
@@ -117,14 +106,17 @@ class RecipesFragment : Fragment() {
     }
 
     private fun showViewItems(connection: Boolean) {
-        shimmerLayout.stopShimmer()
-        shimmerLayout.visibility = View.GONE
+        binding.mealsShimmerLayout.stopShimmer()
+        binding.mealsShimmerLayout.visibility = View.GONE
         if (connection) {
-            recyclerView.visibility = View.VISIBLE
+            binding.mealsRecyclerView.visibility = View.VISIBLE
         } else {
             loadDataFromCache()
         }
     }
 
-
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
 }
