@@ -23,6 +23,8 @@
 
     <color name="primaryNightTextColor">#FFFFFFFF</color>
 
+    <color name="DarkGrey">#565656</color>
+
     <color name="favorite">#e53935</color>
     <color name="video">#d50000</color>
 
