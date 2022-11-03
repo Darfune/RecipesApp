@@ -19,6 +19,7 @@ import com.example.recipesapp.adapters.MealsAdapter
 import com.example.recipesapp.data.Resource
 import com.example.recipesapp.databinding.FragmentRecipesBinding
 import com.example.recipesapp.models.meals.ListOfMeals
+import com.example.recipesapp.utils.observeOnce
 import com.facebook.shimmer.ShimmerFrameLayout
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -59,14 +60,13 @@ class RecipesFragment : Fragment() {
         noConnectionTextView = mealView.findViewById(R.id.noConnectionTextView)
         noConnectionImageView = mealView.findViewById(R.id.noConnectionImageView)
 
-//        requestApiData()
         readDatabase()
         return mealView
     }
 
     private fun readDatabase() {
         lifecycleScope.launch {
-            mainViewModel.readMeals.observe(viewLifecycleOwner) { database ->
+            mainViewModel.readMeals.observeOnce(viewLifecycleOwner) { database ->
                 if (database.isNotEmpty()) {
                     Log.d("RecipesFragment", "readDatabase: called")
                     mealsAdapter.setData(database[0].meals)
