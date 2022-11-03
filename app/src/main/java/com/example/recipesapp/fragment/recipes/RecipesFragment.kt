@@ -83,10 +83,6 @@ class RecipesFragment : Fragment() {
         lifecycleScope.launch {
             mainViewModel.readMeals.observe(viewLifecycleOwner) { database ->
                 if (database.isNotEmpty()) mealsAdapter.setData(database[0].meals)
-                else {
-                    binding.noConnectionTextView.visibility = View.VISIBLE
-                    binding.noConnectionImageView.visibility = View.VISIBLE
-                }
             }
         }
     }
