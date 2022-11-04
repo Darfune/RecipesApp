@@ -96,16 +96,16 @@ dependencies {
     kapt "androidx.room:room-compiler:2.4.3"
     implementation "androidx.room:room-ktx:2.4.3"
 
-    //DataStore
-    implementation "androidx.datastore:datastore-preferences-core:1.0.0"
+    // Preferences DataStore
+    implementation "androidx.datastore:datastore-preferences:1.0.0-alpha01"
 
     //RecyclerView
     implementation "androidx.recyclerview:recyclerview:1.2.1"
 
     //Coroutines
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.3'
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.3'
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.6.3'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.6.4'
 
     //Coroutines Life cycles
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1'
