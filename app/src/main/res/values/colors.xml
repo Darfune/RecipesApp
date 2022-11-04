@@ -19,7 +19,7 @@
     <color name="primaryTextColor">#212121</color>
     <color name="secondaryTextColor">#212121</color>
 
-    <color name="LightGray">#bdbdbd</color>
+    <color name="LightGray">#DFDFDF</color>
 
     <color name="primaryNightTextColor">#FFFFFFFF</color>
 
@@ -27,5 +27,12 @@
 
     <color name="favorite">#e53935</color>
     <color name="video">#d50000</color>
+
+    // Custom Chip Style
+    <color name="checkedChipBackgroundColor">#206200EE</color>
+    <color name="chipBackgroundColor">@color/LightGray</color>
+    <color name="checkedChipTextColor">@color/purple_500</color>
+    <color name="chipTextColor">@color/DarkGrey</color>
+
 
 </resources>
