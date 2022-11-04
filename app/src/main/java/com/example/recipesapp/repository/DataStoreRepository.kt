@@ -3,6 +3,7 @@ package com.example.recipesapp.repository
 import android.content.Context
 import androidx.datastore.DataStore
 import androidx.datastore.preferences.*
+import com.example.recipesapp.utils.Constants.Companion.DEFAULT_MEAL_CATEGORY
 import com.example.recipesapp.utils.Constants.Companion.PREFERENCES_MEAL_CATEGORY
 import com.example.recipesapp.utils.Constants.Companion.PREFERENCES_MEAL_CATEGORY_ID
 import com.example.recipesapp.utils.Constants.Companion.PREFERENCES_NAME
@@ -42,7 +43,7 @@ class DataStoreRepository @Inject constructor(@ApplicationContext private val co
             }
         }
         .map { preferences ->
-            val selectedMealCategory = preferences[PreferenceKeys.selectedMealCategory] ?: "beef"
+            val selectedMealCategory = preferences[PreferenceKeys.selectedMealCategory] ?: DEFAULT_MEAL_CATEGORY
             val selectedMealCategoryId = preferences[PreferenceKeys.selectedMealCategoryId] ?: 0
             MealCategory(
                 selectedMealCategory,
