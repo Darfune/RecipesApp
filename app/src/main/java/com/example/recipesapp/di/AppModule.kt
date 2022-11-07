@@ -22,7 +22,7 @@ object AppModule {
     // Retrofit
     @Singleton
     @Provides
-    fun provideBookApi(): RecipesApi = Retrofit.Builder()
+    fun provideMealsApi(): RecipesApi = Retrofit.Builder()
         .baseUrl(Constants.BASE_URL)
         .addConverterFactory(GsonConverterFactory.create())
         .build()
