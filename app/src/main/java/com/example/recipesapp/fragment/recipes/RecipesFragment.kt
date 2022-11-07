@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.recipesapp.MainViewModel
 import com.example.recipesapp.R
@@ -28,11 +29,15 @@ class RecipesFragment : Fragment() {
     private val binding get() = _binding!!
 
     private lateinit var mainViewModel: MainViewModel
+    private lateinit var mealsViewModel: MealsViewModel
     private val mealsAdapter by lazy { MealsAdapter() }
+
+    private val args by navArgs<RecipesFragmentArgs>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mainViewModel = ViewModelProvider(requireActivity())[MainViewModel::class.java]
+        mealsViewModel = ViewModelProvider(requireActivity())[MealsViewModel::class.java]
     }
 
     override fun onCreateView(
@@ -62,11 +67,13 @@ class RecipesFragment : Fragment() {
     private fun readDatabase() {
         lifecycleScope.launch {
             mainViewModel.readMeals.observeOnce(viewLifecycleOwner) { database ->
-                if (database.isNotEmpty()) {
+                if (database.isNotEmpty() && !args.backFromBottomSheet) {
                     Log.d("RecipesFragment", "readDatabase: called")
                     mealsAdapter.setData(database[0].meals)
                     showViewItems(true)
-                } else requestApiData()
+                }
+                else if (database.isEmpty() && args.backFromBottomSheet)
+                else requestApiData()
             }
         }
     }
