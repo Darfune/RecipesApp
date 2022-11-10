@@ -1,6 +1,7 @@
 package com.example.recipesapp.network
 
 import com.example.recipesapp.models.meals.ListOfMeals
+import com.example.recipesapp.models.meals.Meal
 import com.example.recipesapp.models.mealssmall.MealsSmallList
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -18,6 +19,11 @@ interface RecipesApi {
     suspend fun getMealsByCategory(
         @Query("c") category: String
     ): MealsSmallList
+
+    @GET("lookup.php?")
+    suspend fun getMealById(
+        @Query("i") id: String
+    ): Meal
 
 
 }
