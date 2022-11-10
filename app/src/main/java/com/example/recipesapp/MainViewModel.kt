@@ -16,6 +16,7 @@ import com.example.recipesapp.database.dao.MealsDao
 import com.example.recipesapp.database.entities.MealsEntity
 import com.example.recipesapp.models.meals.ListOfMeals
 import com.example.recipesapp.models.meals.Meal
+import com.example.recipesapp.models.mealssmall.MealsSmallList
 import com.example.recipesapp.repository.RecipesRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -39,6 +40,7 @@ class MainViewModel @Inject constructor(
 
     // Retrofit API
     var mealsResponse: MutableLiveData<Resource<ListOfMeals>> = MutableLiveData()
+    var mealsByCategoryResponse: MutableLiveData<Resource<MealsSmallList>> = MutableLiveData()
     var isLoading: Boolean by mutableStateOf(true)
 
     fun getMeals() = viewModelScope.launch {
@@ -62,6 +64,31 @@ class MainViewModel @Inject constructor(
                 }
             } catch (exception: Exception) {
                 Log.d("MainViewModel", "getMeals: ${exception.message.toString()}")
+            }
+        } else mealsResponse.value = Resource.Error("No Internet Connection")
+    }
+
+    fun getMealsByCategory(category: String) = viewModelScope.launch {
+        if (hasInternetConnection()) {
+            try {
+                when (val result = recipesRepository.getMealsByCategory(category)) {
+                    is Resource.Success -> {
+                        mealsByCategoryResponse.value = result
+                        Log.d("MainViewModel", "getMealsByCategory: ${mealsResponse.value}")
+                        isLoading = false
+//                        val mealsCategory = mealsByCategoryResponse.value!!.data
+//                        if (mealsByCategoryResponse != null) {
+//                            offlineCacheMealRecipes(mealsByCategoryResponse)
+//                        }
+                    }
+                    is Resource.Error -> {
+                        Log.e("MainViewModel", "mealsByCategoryResponse: Failed to get response")
+                        isLoading = false
+                    }
+                    else -> isLoading = false
+                }
+            } catch (exception: Exception) {
+                Log.d("MainViewModel", "mealsByCategoryResponse: ${exception.message.toString()}")
             }
         } else mealsResponse.value = Resource.Error("No Internet Connection")
     }
