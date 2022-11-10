@@ -14,7 +14,7 @@
             android:id="@+id/action_recipesFragment_to_mealsBottomSheet"
             app:destination="@id/mealsBottomSheet" />
         <argument
-            android:name="BackFromBottomSheet"
+            android:name="backFromBottomSheet"
             app:argType="boolean"
             android:defaultValue="false" />
     </fragment>
