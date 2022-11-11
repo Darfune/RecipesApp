@@ -18,7 +18,7 @@ import com.example.recipesapp.adapters.MealsAdapter
 import com.example.recipesapp.data.Resource
 import com.example.recipesapp.databinding.FragmentRecipesBinding
 import com.example.recipesapp.models.meals.ListOfMeals
-import com.example.recipesapp.repository.Requests
+//import com.example.recipesapp.repository.Requests
 import com.example.recipesapp.utils.observeOnce
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -72,47 +72,25 @@ class RecipesFragment : Fragment() {
                     Log.d("RecipesFragment", "readDatabase: called")
                     mealsAdapter.setData(database[0].meals)
                     showViewItems(true)
-                } else if (database.isEmpty() && args.backFromBottomSheet)  requestApiData(Requests.Category,mealsViewModel.searchByCategory())
-                else requestApiData(Requests.Generic,"")
+                } //else if (database.isEmpty() && args.backFromBottomSheet)
+                else requestApiData()
             }
         }
     }
 
-    private fun requestApiData(typeOfRequest: Requests, arg: String) {
+    private fun requestApiData() {
 
-        when (typeOfRequest) {
-            Requests.Generic -> {
-                mainViewModel.getMeals()
-                Log.d("RecipesFragment", "requestApiData: called")
-                mainViewModel.mealsResponse.observe(viewLifecycleOwner) { response ->
-                    when (response) {
-                        is Resource.Success -> setupRecyclerView(response)
-                        is Resource.Error -> showErrorView(response)
-                        is Resource.Loading -> {
+        mainViewModel.getMeals()
+        Log.d("RecipesFragment", "requestApiData: called")
+        mainViewModel.mealsResponse.observe(viewLifecycleOwner) { response ->
+            when (response) {
+                is Resource.Success -> setupRecyclerView(response)
+                is Resource.Error -> showErrorView(response)
+                is Resource.Loading -> {
 
-                        }
-                    }
                 }
             }
-            Requests.Category -> {
-                Log.d("RecipesFragment", "requestApiData: categories request called")
-                mainViewModel.getMealsByCategory(arg)
-//                mainViewModel.mealsByCategoryResponse.observe(viewLifecycleOwner) { response ->
-//                    when (response) {
-//                        is Resource.Success -> setupRecyclerView(response)
-//                        is Resource.Error -> showErrorView(response)
-//                        is Resource.Loading -> {
-//
-//                        }
-//                    }
-//                }
-            }
-            else -> Log.d("RecipesFragment", "requestApiData: Error in request type")
         }
-
-
-
-
     }
 
     private fun loadDataFromCache() {
