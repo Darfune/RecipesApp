@@ -25,5 +25,8 @@ interface RecipesApi {
         @Query("i") id: String
     ): Meal
 
+    @GET("random.php")
+    suspend fun getRandomMeal(): Meal
+
 
 }
