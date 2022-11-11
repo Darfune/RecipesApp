@@ -43,4 +43,14 @@ class RecipesRepository @Inject constructor(
         return Resource.Success(response)
     }
 
+    suspend fun getRandomMeal(): Resource<Meal> {
+        val response = try {
+            recipesApi.getRandomMeal()
+        } catch (exc: Exception) {
+            Log.d("Recipes Repository", "getRandomMeal: $exc")
+            return Resource.Error("Unexpected Error occurred.")
+        }
+        return Resource.Success(response)
+    }
+
 }
