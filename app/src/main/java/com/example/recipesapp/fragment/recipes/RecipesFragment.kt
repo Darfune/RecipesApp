@@ -21,10 +21,8 @@ import com.example.recipesapp.data.Resource
 import com.example.recipesapp.databinding.FragmentRecipesBinding
 import com.example.recipesapp.models.meals.ListOfMeals
 import com.example.recipesapp.utils.NetworkListener
-//import com.example.recipesapp.repository.Requests
 import com.example.recipesapp.utils.observeOnce
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
