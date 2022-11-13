@@ -13,6 +13,8 @@ class Constants {
         // Preferences
         const val PREFERENCES_MEAL_CATEGORY = "mealCategory"
         const val PREFERENCES_MEAL_CATEGORY_ID = "mealCategoryId"
+        const val PREFERENCES_BACK_ONLINE = "backOnline"
+
         const val PREFERENCES_NAME = "meals_preferences"
 
         const val DEFAULT_MEAL_CATEGORY = "beef"
