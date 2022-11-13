@@ -40,14 +40,29 @@ class MainViewModel @Inject constructor(
 
     // Retrofit API
     var mealsResponse: MutableLiveData<Resource<ListOfMeals>> = MutableLiveData()
-    var mealsByCategoryResponse: MutableLiveData<Resource<MealsSmallList>> = MutableLiveData()
+    var searchedMealsResponse: MutableLiveData<Resource<ListOfMeals>> = MutableLiveData()
+    //    var mealsByCategoryResponse: MutableLiveData<Resource<MealsSmallList>> = MutableLiveData()
+
+
     var isLoading: Boolean by mutableStateOf(true)
 
+    // Default search for RecipesFragment
     fun getMeals() = viewModelScope.launch {
-        if (hasInternetConnection()) {
-            try {
-                when (val result = recipesRepository.getMeals()) {
-                    is Resource.Success -> {
+        if (hasInternetConnection()) getMealsSafeCall("")
+        else mealsResponse.value = Resource.Error("No Internet Connection")
+    }
+
+    // Search call in RecipesFragment
+    fun searchMeals(searchQuery: String) = viewModelScope.launch {
+        if (hasInternetConnection()) getMealsSafeCall(searchQuery)
+        else searchedMealsResponse.value = Resource.Error("No Internet Connection")
+    }
+
+    private suspend fun getMealsSafeCall(searchQuery: String) {
+        try {
+            when (val result = recipesRepository.getMeals(searchQuery)) {
+                is Resource.Success -> {
+                    if (searchQuery.isBlank()) {
                         mealsResponse.value = result
                         Log.d("MainViewModel", "getMeals: ${mealsResponse.value}")
                         isLoading = false
@@ -55,43 +70,49 @@ class MainViewModel @Inject constructor(
                         if (mealRecipe != null) {
                             offlineCacheMealRecipes(mealRecipe)
                         }
+                    } else {
+                        searchedMealsResponse.value = result
+                        Log.d("MainViewModel", "getMeals: ${searchedMealsResponse.value}")
+                        isLoading = false
+                    }
+                }
+                is Resource.Error -> {
+                    Log.e("MainViewModel", "getMeals: Failed to get response")
+                    isLoading = false
+                }
+                else -> isLoading = false
+            }
+        } catch (exception: Exception) {
+            Log.d("MainViewModel", "getMeals: ${exception.message.toString()}")
+        }
+    }
+
+    /*
+    fun getMealsByCategory(category: String) = viewModelScope.launch {
+        if (hasInternetConnection()) {
+            try {
+                when (val result = recipesRepository.getMealsByCategory(category)) {
+                    is Resource.Success -> {
+                        mealsByCategoryResponse.value = result
+                        Log.d("MainViewModel", "getMealsByCategory: ${mealsResponse.value}")
+                        isLoading = false
+//                        val mealsCategory = mealsByCategoryResponse.value!!.data
+//                        if (mealsByCategoryResponse != null) {
+//                            offlineCacheMealRecipes(mealsByCategoryResponse)
+//                        }
                     }
                     is Resource.Error -> {
-                        Log.e("MainViewModel", "getMeals: Failed to get response")
+                        Log.e("MainViewModel", "mealsByCategoryResponse: Failed to get response")
                         isLoading = false
                     }
                     else -> isLoading = false
                 }
             } catch (exception: Exception) {
-                Log.d("MainViewModel", "getMeals: ${exception.message.toString()}")
+                Log.d("MainViewModel", "mealsByCategoryResponse: ${exception.message.toString()}")
             }
         } else mealsResponse.value = Resource.Error("No Internet Connection")
     }
-
-//    fun getMealsByCategory(category: String) = viewModelScope.launch {
-//        if (hasInternetConnection()) {
-//            try {
-//                when (val result = recipesRepository.getMealsByCategory(category)) {
-//                    is Resource.Success -> {
-//                        mealsByCategoryResponse.value = result
-//                        Log.d("MainViewModel", "getMealsByCategory: ${mealsResponse.value}")
-//                        isLoading = false
-////                        val mealsCategory = mealsByCategoryResponse.value!!.data
-////                        if (mealsByCategoryResponse != null) {
-////                            offlineCacheMealRecipes(mealsByCategoryResponse)
-////                        }
-//                    }
-//                    is Resource.Error -> {
-//                        Log.e("MainViewModel", "mealsByCategoryResponse: Failed to get response")
-//                        isLoading = false
-//                    }
-//                    else -> isLoading = false
-//                }
-//            } catch (exception: Exception) {
-//                Log.d("MainViewModel", "mealsByCategoryResponse: ${exception.message.toString()}")
-//            }
-//        } else mealsResponse.value = Resource.Error("No Internet Connection")
-//    }
+    */
 
     // Insert data to database
     private fun offlineCacheMealRecipes(mealRecipe: ListOfMeals) =
