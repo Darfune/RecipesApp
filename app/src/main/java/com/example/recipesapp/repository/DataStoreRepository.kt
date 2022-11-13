@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.datastore.DataStore
 import androidx.datastore.preferences.*
 import com.example.recipesapp.utils.Constants.Companion.DEFAULT_MEAL_CATEGORY
+import com.example.recipesapp.utils.Constants.Companion.PREFERENCES_BACK_ONLINE
 import com.example.recipesapp.utils.Constants.Companion.PREFERENCES_MEAL_CATEGORY
 import com.example.recipesapp.utils.Constants.Companion.PREFERENCES_MEAL_CATEGORY_ID
 import com.example.recipesapp.utils.Constants.Companion.PREFERENCES_NAME
@@ -21,6 +22,7 @@ class DataStoreRepository @Inject constructor(@ApplicationContext private val co
     private object PreferenceKeys {
         val selectedMealCategory = preferencesKey<String>(PREFERENCES_MEAL_CATEGORY)
         val selectedMealCategoryId = preferencesKey<Int>(PREFERENCES_MEAL_CATEGORY_ID)
+        val backOnline = preferencesKey<Boolean>(PREFERENCES_BACK_ONLINE)
     }
 
     private val dataStore: DataStore<Preferences> = context.createDataStore(
@@ -34,6 +36,12 @@ class DataStoreRepository @Inject constructor(@ApplicationContext private val co
         }
     }
 
+    suspend fun saveBackOnline(backOnline: Boolean) {
+        dataStore.edit { preferences ->
+            preferences[PreferenceKeys.backOnline] = backOnline
+        }
+    }
+
     val readMealCategory: Flow<MealCategory> = dataStore.data
         .catch { exception ->
             if (exception is IOException) {
@@ -43,12 +51,28 @@ class DataStoreRepository @Inject constructor(@ApplicationContext private val co
             }
         }
         .map { preferences ->
-            val selectedMealCategory = preferences[PreferenceKeys.selectedMealCategory] ?: DEFAULT_MEAL_CATEGORY
+            val selectedMealCategory =
+                preferences[PreferenceKeys.selectedMealCategory] ?: DEFAULT_MEAL_CATEGORY
             val selectedMealCategoryId = preferences[PreferenceKeys.selectedMealCategoryId] ?: 1
             MealCategory(
                 selectedMealCategory,
                 selectedMealCategoryId
             )
+        }
+
+    val readBackOnline: Flow<Boolean> = dataStore.data
+        .catch { exception ->
+            if (exception is IOException) {
+                emit(
+                    emptyPreferences()
+                )
+            } else {
+                throw exception
+            }
+        }
+        .map { preferences ->
+            val backOnline = preferences[PreferenceKeys.backOnline] ?: false
+            backOnline
         }
 }
 
