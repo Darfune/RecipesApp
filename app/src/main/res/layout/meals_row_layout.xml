@@ -10,15 +10,10 @@
             type="com.example.recipesapp.models.meals.Meal" />
     </data>
 
-<!--    <com.facebook.shimmer.ShimmerFrameLayout-->
-<!--        android:id="@+id/shimmerRowLayout"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="150dp">-->
-
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/recipesRowLayout"
             android:layout_width="match_parent"
+            onMealClickListener="@{mealData}"
             android:layout_height="150dp"
             android:layout_marginTop="4dp"
             android:layout_marginBottom="4dp">
