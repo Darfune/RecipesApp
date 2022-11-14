@@ -10,6 +10,7 @@ import androidx.lifecycle.asLiveData
 import androidx.navigation.fragment.findNavController
 import com.example.recipesapp.R
 import com.example.recipesapp.databinding.MealsBottomSheetBinding
+import com.example.recipesapp.fragment.recipes.MealsBottomSheetDirections
 import com.example.recipesapp.utils.Constants.Companion.DEFAULT_MEAL_CATEGORY
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.chip.Chip
