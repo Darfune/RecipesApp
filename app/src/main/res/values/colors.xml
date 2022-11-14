@@ -34,5 +34,6 @@
     <color name="checkedChipTextColor">@color/purple_500</color>
     <color name="chipTextColor">@color/DarkGrey</color>
 
-
+    // Tab Layout
+    <color name="actionBarBackgroundPrimary">@color/purple_500</color>
 </resources>
