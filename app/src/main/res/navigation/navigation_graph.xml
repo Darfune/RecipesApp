@@ -17,15 +17,18 @@
             android:name="backFromBottomSheet"
             app:argType="boolean"
             android:defaultValue="false" />
+        <action
+            android:id="@+id/action_recipesFragment_to_detailsActivity"
+            app:destination="@id/detailsActivity" />
     </fragment>
     <fragment
         android:id="@+id/favoriteRecipesFragment"
-        android:name="com.example.recipesapp.screens.main.fragment.FavoriteRecipesFragment"
+        android:name="com.example.recipesapp.screens.main.fragment.favorites.FavoriteRecipesFragment"
         android:label="Favorites"
         tools:layout="@layout/fragment_favorite_recipes" />
     <fragment
         android:id="@+id/categoriesFragment"
-        android:name="com.example.recipesapp.screens.main.fragment.CategoriesFragment"
+        android:name="com.example.recipesapp.screens.main.fragment.categories.CategoriesFragment"
         android:label="Categories"
         tools:layout="@layout/fragment_categories" />
     <dialog
@@ -37,4 +40,13 @@
             android:id="@+id/action_mealsBottomSheet_to_recipesFragment"
             app:destination="@id/recipesFragment" />
     </dialog>
+    <activity
+        android:id="@+id/detailsActivity"
+        android:name="com.example.recipesapp.screens.details.DetailsActivity"
+        android:label="Details"
+        tools:layout="@layout/activity_details" >
+        <argument
+            android:name="meal"
+            app:argType="com.example.recipesapp.models.meals.Meal" />
+    </activity>
 </navigation>
