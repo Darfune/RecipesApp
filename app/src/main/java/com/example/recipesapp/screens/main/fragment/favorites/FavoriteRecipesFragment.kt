@@ -1,4 +1,4 @@
-package com.example.recipesapp.screens.main.fragment
+package com.example.recipesapp.screens.main.fragment.favorites
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
