@@ -1,4 +1,4 @@
-package com.example.recipesapp.fragment.recipes
+package com.example.recipesapp.screens.main.fragment.recipes
 
 import android.app.Application
 import android.widget.Toast

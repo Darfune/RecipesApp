@@ -1,4 +1,4 @@
-package com.example.recipesapp.fragment.recipes
+package com.example.recipesapp.screens.main.fragment.recipes
 
 import android.os.Bundle
 import android.util.Log
@@ -14,7 +14,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.recipesapp.MainViewModel
+import com.example.recipesapp.screens.main.MainViewModel
 import com.example.recipesapp.R
 import com.example.recipesapp.adapters.MealsAdapter
 import com.example.recipesapp.data.Resource

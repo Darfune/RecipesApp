@@ -1,22 +1,18 @@
-package com.example.recipesapp
+package com.example.recipesapp.screens.main
 
 import android.app.Application
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.util.Log
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.*
 import com.example.recipesapp.data.Resource
-import com.example.recipesapp.database.MealsDatabase
 import com.example.recipesapp.database.dao.MealsDao
 import com.example.recipesapp.database.entities.MealsEntity
 import com.example.recipesapp.models.meals.ListOfMeals
-import com.example.recipesapp.models.meals.Meal
-import com.example.recipesapp.models.mealssmall.MealsSmallList
 import com.example.recipesapp.repository.RecipesRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers

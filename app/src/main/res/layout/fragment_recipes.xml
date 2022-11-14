@@ -6,13 +6,13 @@
     <data>
         <variable
             name="mainViewModel"
-            type="com.example.recipesapp.MainViewModel" />
+            type="com.example.recipesapp.screens.main.MainViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".fragment.recipes.RecipesFragment">
+        tools:context=".screens.main.fragment.recipes.RecipesFragment">
 
         <com.facebook.shimmer.ShimmerFrameLayout
             android:layout_width="match_parent"

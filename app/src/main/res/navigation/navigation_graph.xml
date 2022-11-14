@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/recipesFragment"
-        android:name="com.example.recipesapp.fragment.recipes.RecipesFragment"
+        android:name="com.example.recipesapp.screens.main.fragment.recipes.RecipesFragment"
         android:label="Recipes"
         tools:layout="@layout/fragment_recipes" >
         <action
@@ -20,12 +20,12 @@
     </fragment>
     <fragment
         android:id="@+id/favoriteRecipesFragment"
-        android:name="com.example.recipesapp.fragment.FavoriteRecipesFragment"
+        android:name="com.example.recipesapp.screens.main.fragment.FavoriteRecipesFragment"
         android:label="Favorites"
         tools:layout="@layout/fragment_favorite_recipes" />
     <fragment
         android:id="@+id/categoriesFragment"
-        android:name="com.example.recipesapp.fragment.CategoriesFragment"
+        android:name="com.example.recipesapp.screens.main.fragment.CategoriesFragment"
         android:label="Categories"
         tools:layout="@layout/fragment_categories" />
     <dialog
