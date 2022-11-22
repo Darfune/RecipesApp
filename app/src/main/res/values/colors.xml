@@ -20,10 +20,12 @@
     <color name="secondaryTextColor">#212121</color>
 
     <color name="LightGray">#DFDFDF</color>
+    <color name="MediumGray">#989898</color>
+    <color name="DarkGrey">#565656</color>
+    <color name="DarkerGrey">#565656</color>
 
     <color name="primaryNightTextColor">#FFFFFFFF</color>
 
-    <color name="DarkGrey">#565656</color>
 
     <color name="favorite">#e53935</color>
     <color name="video">#d50000</color>
@@ -36,4 +38,9 @@
 
     // Tab Layout
     <color name="actionBarBackgroundPrimary">@color/purple_500</color>
+
+    // Ingredients Card Colors
+    <color name="strokeColor">#565656</color>
+    <color name="cardBackgroundColor">@color/white</color>
+    <color name="titleColor">@color/primaryTextColor</color>
 </resources>
