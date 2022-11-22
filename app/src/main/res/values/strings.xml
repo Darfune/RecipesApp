@@ -25,4 +25,7 @@
     <string name="breakfast">Breakfast</string>
     <string name="apply">Apply</string>
     <string name="search">Search</string>
+    <string name="random_lorem_ipsum">Aliquam erat volutpat. Fusce mattis porta purus, at vestibulum ipsum congue ut. Vestibulum cursus est sit amet velit egestas, vel euismod tellus condimentum. Proin in enim elit. In condimentum, tortor nec consectetur rhoncus, dolor odio bibendum tellus, et maximus ligula orci at urna. Ut interdum volutpat velit, ut gravida enim placerat ac. Fusce semper sit amet tortor vel ultrices. Cras rhoncus, orci id suscipit finibus, lectus enim pulvinar risus, a finibus diam odio eu turpis. Duis congue in elit eget consectetur. Donec rutrum viverra purus, maximus tincidunt elit. Sed odio magna, volutpat ac lectus sed, vestibulum gravida nibh. Nullam eget porttitor lorem, ut faucibus diam. Donec magna nisi, sollicitudin eu consequat non, finibus vitae magna.</string>
+    <string name="meal_title">Meal Title</string>
+    <string name="meal_icon">meal icon</string>
 </resources>
