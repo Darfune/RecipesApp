@@ -2,7 +2,6 @@ package com.example.recipesapp.network
 
 import com.example.recipesapp.models.meals.ListOfMeals
 import com.example.recipesapp.models.meals.Meal
-import com.example.recipesapp.models.mealssmall.MealsSmallList
 import retrofit2.http.GET
 import retrofit2.http.Query
 import javax.inject.Singleton
@@ -15,10 +14,10 @@ interface RecipesApi {
         @Query("s") nameOfMeal: String? = null
     ): ListOfMeals
 
-    @GET("filter.php")
-    suspend fun getMealsByCategory(
-        @Query("c") category: String
-    ): MealsSmallList
+//    @GET("filter.php")
+//    suspend fun getMealsByCategory(
+//        @Query("c") category: String
+//    ): MealsSmallList
 
     @GET("lookup.php?")
     suspend fun getMealById(
