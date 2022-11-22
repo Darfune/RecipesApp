@@ -5,8 +5,8 @@ class Constants {
     companion object{
         // Retrofit
         const val BASE_URL = "https://www.themealdb.com/api/json/v1/1/"
-        const val BASE_ING_URL = "www.themealdb.com/images/ingredients/"
-
+        const val BASE_ING_IMG_URL = "https://www.themealdb.com/images/ingredients/"
+        const val END_SMALL_IMG_URL = "-Small.png"
 
         // ROOM
         const val DATABASE_NAME = "recipes_database"
