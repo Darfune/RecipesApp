@@ -43,4 +43,8 @@
     <color name="strokeColor">#565656</color>
     <color name="cardBackgroundColor">@color/white</color>
     <color name="titleColor">@color/primaryTextColor</color>
+
+    // Favorites Star Color
+    <color name="favoritesStarColor">#FFD600</color>
+
 </resources>
