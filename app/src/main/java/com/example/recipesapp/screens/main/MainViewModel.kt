@@ -42,12 +42,12 @@ class MainViewModel @Inject constructor(
             mealsDao.insertFavoriteMeal(favoritesEntity)
         }
 
-    private fun deleteFavoriteMeal(favoritesEntity: FavoritesEntity) =
+    fun deleteFavoriteMeal(favoritesEntity: FavoritesEntity) =
         viewModelScope.launch(Dispatchers.IO) {
             mealsDao.deleteFavoriteMeal(favoritesEntity)
         }
 
-    private fun deleteAllFavoriteMeal(favoritesEntity: FavoritesEntity) =
+    fun deleteAllFavoriteMeal(favoritesEntity: FavoritesEntity) =
         viewModelScope.launch(Dispatchers.IO) {
             mealsDao.deleteAllFavoriteMeals()
         }
