@@ -11,6 +11,7 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.*
 import com.example.recipesapp.data.Resource
 import com.example.recipesapp.database.dao.MealsDao
+import com.example.recipesapp.database.entities.FavoritesEntity
 import com.example.recipesapp.database.entities.MealsEntity
 import com.example.recipesapp.models.meals.ListOfMeals
 import com.example.recipesapp.repository.RecipesRepository
@@ -28,13 +29,32 @@ class MainViewModel @Inject constructor(
 
     // Room Database
     val readMeals: LiveData<List<MealsEntity>> = mealsDao.readMeals().asLiveData()
+    val readFavoriteMeals: LiveData<List<FavoritesEntity>> =
+        mealsDao.readFavoriteMeal().asLiveData()
 
     private fun insertMeals(mealsEntity: MealsEntity) =
         viewModelScope.launch(Dispatchers.IO) {
             mealsDao.insertMeals(mealsEntity)
         }
 
+    private fun insertFavoriteMeal(favoritesEntity: FavoritesEntity) =
+        viewModelScope.launch(Dispatchers.IO) {
+            mealsDao.insertFavoriteMeal(favoritesEntity)
+        }
+
+    private fun deleteFavoriteMeal(favoritesEntity: FavoritesEntity) =
+        viewModelScope.launch(Dispatchers.IO) {
+            mealsDao.deleteFavoriteMeal(favoritesEntity)
+        }
+
+    private fun deleteAllFavoriteMeal(favoritesEntity: FavoritesEntity) =
+        viewModelScope.launch(Dispatchers.IO) {
+            mealsDao.deleteAllFavoriteMeals()
+        }
+
+
     // Retrofit API
+
     var mealsResponse: MutableLiveData<Resource<ListOfMeals>> = MutableLiveData()
     var searchedMealsResponse: MutableLiveData<Resource<ListOfMeals>> = MutableLiveData()
     //    var mealsByCategoryResponse: MutableLiveData<Resource<MealsSmallList>> = MutableLiveData()
