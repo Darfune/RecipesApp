@@ -37,7 +37,7 @@ class MainViewModel @Inject constructor(
             mealsDao.insertMeals(mealsEntity)
         }
 
-    private fun insertFavoriteMeal(favoritesEntity: FavoritesEntity) =
+    fun insertFavoriteMeal(favoritesEntity: FavoritesEntity) =
         viewModelScope.launch(Dispatchers.IO) {
             mealsDao.insertFavoriteMeal(favoritesEntity)
         }
