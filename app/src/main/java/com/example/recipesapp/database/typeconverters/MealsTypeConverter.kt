@@ -11,13 +11,25 @@ class MealsTypeConverter {
     var gson =Gson()
 
     @TypeConverter
-    fun mealToString(listOfMeals: ListOfMeals): String{
+    fun mealToString(meal: Meal): String{
+        return gson.toJson(meal)
+    }
+
+    @TypeConverter
+    fun stringToMeal(data: String): Meal {
+        val listType = object : TypeToken<Meal>() {}.type
+        return gson.fromJson(data, listType)
+    }
+
+    @TypeConverter
+    fun listOfMealsToString(listOfMeals: ListOfMeals): String{
         return gson.toJson(listOfMeals)
     }
 
     @TypeConverter
-    fun stringToMeal(data: String): ListOfMeals{
+    fun stringToListOfMeals(data: String): ListOfMeals{
         val listType = object : TypeToken<ListOfMeals>() {}.type
         return gson.fromJson(data, listType)
     }
+
 }
