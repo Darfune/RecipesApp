@@ -4,12 +4,13 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.example.recipesapp.database.dao.MealsDao
+import com.example.recipesapp.database.entities.FavoritesEntity
 import com.example.recipesapp.database.entities.MealsEntity
 import com.example.recipesapp.database.typeconverters.MealsTypeConverter
 
 @Database(
-    entities = [MealsEntity::class],
-    version = 1,
+    entities = [MealsEntity::class, FavoritesEntity::class],
+    version = 2,
     exportSchema = false
 )
 @TypeConverters(MealsTypeConverter::class)
