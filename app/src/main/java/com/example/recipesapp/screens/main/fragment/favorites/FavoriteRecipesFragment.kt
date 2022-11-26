@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.recipesapp.R
 import com.example.recipesapp.adapters.FavoriteMealsAdapter
@@ -21,7 +22,6 @@ class FavoriteRecipesFragment : Fragment() {
     private var _binding: FragmentFavoriteRecipesBinding? = null
     private val binding get() = _binding!!
 
-
     private val favoriteMealsAdapter: FavoriteMealsAdapter by lazy { FavoriteMealsAdapter() }
     private val mainViewModel: MainViewModel by viewModels()
 
@@ -33,22 +33,26 @@ class FavoriteRecipesFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
+
         _binding = FragmentFavoriteRecipesBinding.inflate(inflater, container, false)
+        binding.lifecycleOwner = this
+        binding.mainViewModel = mainViewModel
+        binding.favoriteMealsAdapter
 
         setupRecyclerView(binding.favoriteMealsRecyclerView)
-
-        mainViewModel.readFavoriteMeals.observe(viewLifecycleOwner) { favoritesEntity ->
-            favoriteMealsAdapter.setData(favoritesEntity)
-
-        }
 
         // Inflate the layout for this fragment
         return binding.root
     }
 
     private fun setupRecyclerView(favoriteMealsRecyclerView: RecyclerView) {
-
+        favoriteMealsRecyclerView.adapter = favoriteMealsAdapter
+        favoriteMealsRecyclerView.layoutManager = LinearLayoutManager(requireContext())
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
 }
