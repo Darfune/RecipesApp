@@ -100,6 +100,18 @@ class DetailsActivity : AppCompatActivity() {
         mealSaved = true
     }
 
+    private fun removeFromFavorites(item: MenuItem) {
+        val favoritesEntity = FavoritesEntity(
+            savedMealId,
+            args.meal
+        )
+        Log.d("removeFromFavorites: ", "$savedMealId ${args.meal}")
+        mainViewModel.deleteFavoriteMeal(favoritesEntity)
+        changeMenuItemColor(item, R.color.white)
+        showSnackBar("Removed from Favorites")
+        mealSaved = false
+    }
+
     private fun showSnackBar(message: String) {
         Snackbar.make(
             binding.detailsLayout,
@@ -110,17 +122,6 @@ class DetailsActivity : AppCompatActivity() {
             .show()
     }
 
-    private fun removeFromFavorites(item: MenuItem) {
-        val favoritesEntity = FavoritesEntity(
-            savedMealId,
-            args.meal
-        )
-        mainViewModel.deleteFavoriteMeal(favoritesEntity)
-        changeMenuItemColor(item, R.color.white)
-        showSnackBar("Removed from Favorites")
-        mealSaved = false
-    }
-
     private fun changeMenuItemColor(item: MenuItem, color: Int) {
         item.icon?.setTint(ContextCompat.getColor(this, color))
     }
@@ -128,12 +129,16 @@ class DetailsActivity : AppCompatActivity() {
     private fun checkIfMealIsSaved(menuItem: MenuItem) {
         mainViewModel.readFavoriteMeals.observe(this) { favoritesEntity ->
             try {
-                for (savedMeal in favoritesEntity)
+                for (savedMeal in favoritesEntity){
+
+                    Log.d("checkIfMealIsSaved: ", "${savedMeal.meal.idMeal} - ${args.meal.idMeal}")
                     if (savedMeal.meal.idMeal == args.meal.idMeal){
                         changeMenuItemColor(menuItem, R.color.favoritesStarColor)
                         savedMealId = args.meal.idMeal!!.toInt()
                         mealSaved = true
+                        break
                     } else changeMenuItemColor(menuItem, R.color.white)
+                }
             } catch (exc: Exception) {
                 Log.d("checkIfMealIsSaved: ", exc.message.toString())
             }
