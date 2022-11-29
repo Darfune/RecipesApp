@@ -180,4 +180,9 @@ class FavoriteMealsAdapter(
             .show()
     }
 
+    fun clearContextualMode(){
+        if (this::mActionMode.isInitialized)
+            mActionMode.finish()
+    }
+
 }
