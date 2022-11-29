@@ -9,15 +9,19 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.recipesapp.R
 import com.example.recipesapp.database.entities.FavoritesEntity
 import com.example.recipesapp.databinding.FavoritesRowLayoutBinding
+import com.example.recipesapp.screens.main.MainViewModel
 import com.example.recipesapp.screens.main.fragments.favorites.FavoriteRecipesFragmentDirections
 import com.example.recipesapp.utils.MealsDiffUtils
+import com.google.android.material.snackbar.Snackbar
 
 class FavoriteMealsAdapter(
-    private val requireActivity: FragmentActivity
+    private val requireActivity: FragmentActivity,
+    private val mainViewModel: MainViewModel
 ) : RecyclerView.Adapter<FavoriteMealsAdapter.FavoriteMealsViewHolder>(),
     ActionMode.Callback {
 
     private lateinit var mActionMode: ActionMode
+    private lateinit var rootView: View
 
     private var multiSelection = false
     private var selectMeals = arrayListOf<FavoritesEntity>()
@@ -47,6 +51,8 @@ class FavoriteMealsAdapter(
 
     override fun onBindViewHolder(holder: FavoriteMealsViewHolder, position: Int) {
         favoritesViewHolder.add(holder)
+        rootView = holder.itemView.rootView
+
         holder.bind(favoriteMeals[position])
 
 
@@ -111,7 +117,7 @@ class FavoriteMealsAdapter(
         when (selectMeals.size) {
             0 -> mActionMode.finish()
             1 -> mActionMode.title = "${selectMeals.size} item selected"
-            else-> mActionMode.title = "${selectMeals.size} items selected"
+            else -> mActionMode.title = "${selectMeals.size} items selected"
         }
     }
 
@@ -132,13 +138,22 @@ class FavoriteMealsAdapter(
         return true
     }
 
-    override fun onActionItemClicked(actionMode: ActionMode?, item: MenuItem?): Boolean {
+    override fun onActionItemClicked(actionMode: ActionMode?, menu: MenuItem?): Boolean {
+        if (menu?.itemId == R.id.delete_favorite_meal_menu) {
+            selectMeals.forEach {
+                mainViewModel.deleteFavoriteMeal(it)
+            }
+            showSnackBar("${selectMeals.size} Recipe/s removed")
+            multiSelection = false
+            selectMeals.clear()
+            actionMode?.finish()
+        }
         return true
     }
 
     override fun onDestroyActionMode(actionMode: ActionMode?) {
         favoritesViewHolder.forEach { holder ->
-            changeMealStyle(holder, R.color.cardBackgroundColor, R.color.strokeColor)
+            changeMealStyle(holder, R.color.cardBackgroundColor, R.color.LightGray)
         }
         multiSelection = false
         selectMeals.clear()
@@ -154,6 +169,15 @@ class FavoriteMealsAdapter(
         val diffUtilResult = DiffUtil.calculateDiff(favoriteMealsDiffUtil)
         favoriteMeals = newFavoriteMeals
         diffUtilResult.dispatchUpdatesTo(this)
+    }
+
+    private fun showSnackBar(message: String) {
+        Snackbar.make(
+            rootView,
+            message,
+            Snackbar.LENGTH_SHORT
+        ).setAction("Okay") {}
+            .show()
     }
 
 }
