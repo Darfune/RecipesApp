@@ -1,7 +1,6 @@
 package com.example.recipesapp.adapters
 
 import android.view.*
-import androidx.constraintlayout.widget.ConstraintSet.Layout
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentActivity
 import androidx.navigation.findNavController
@@ -18,9 +17,12 @@ class FavoriteMealsAdapter(
 ) : RecyclerView.Adapter<FavoriteMealsAdapter.FavoriteMealsViewHolder>(),
     ActionMode.Callback {
 
+    private var multiSelection = false
+    private var selectMeals = arrayListOf<FavoritesEntity>()
+    private var favoritesViewHolder = arrayListOf<FavoriteMealsViewHolder>()
     private var favoriteMeals = emptyList<FavoritesEntity>()
 
-    class FavoriteMealsViewHolder(private val binding: FavoritesRowLayoutBinding) :
+    class FavoriteMealsViewHolder(val binding: FavoritesRowLayoutBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(favoritesEntity: FavoritesEntity) {
@@ -42,26 +44,62 @@ class FavoriteMealsAdapter(
 
     override fun onBindViewHolder(holder: FavoriteMealsViewHolder, position: Int) {
         holder.bind(favoriteMeals[position])
+        favoritesViewHolder.add(holder)
 
 
         /**
          * Single Click Listener
          */
-        holder.itemView.findViewById<View>(R.id.favoriteMealssRowLayout).setOnClickListener {
-            val action =
-                FavoriteRecipesFragmentDirections.actionFavoriteRecipesFragmentToDetailsActivity(
-                    favoriteMeals[position].meal
-                )
-            holder.itemView.findNavController().navigate(action)
+        holder.binding.favoriteMealssRowLayout.setOnClickListener {
+            if (multiSelection) {
+                applySelection(holder, favoriteMeals[position])
+            } else {
+                val action =
+                    FavoriteRecipesFragmentDirections.actionFavoriteRecipesFragmentToDetailsActivity(
+                        favoriteMeals[position].meal
+                    )
+                holder.itemView.findNavController().navigate(action)
+            }
         }
 
         /**
          * Long Click Listener
          */
-        holder.itemView.findViewById<View>(R.id.favoriteMealssRowLayout).setOnLongClickListener {
-            requireActivity.startActionMode(this)
-            true
+        holder.binding.favoriteMealssRowLayout.setOnLongClickListener {
+            if (!multiSelection) {
+                multiSelection = true
+                requireActivity.startActionMode(this)
+                applySelection(holder, favoriteMeals[position])
+                true
+            } else {
+                multiSelection = false
+                false
+            }
         }
+    }
+
+    private fun applySelection(holder: FavoriteMealsViewHolder, currentMeal: FavoritesEntity) {
+        if (selectMeals.contains(currentMeal)) {
+            selectMeals.remove(currentMeal)
+            changeMealStyle(holder, R.color.cardBackgroundColor, R.color.strokeColor)
+        } else {
+            selectMeals.add(currentMeal)
+            changeMealStyle(holder, R.color.cardBackgroundLightColor, R.color.cardSelectedStroke)
+        }
+    }
+
+    private fun changeMealStyle(
+        holder: FavoriteMealsViewHolder,
+        backgroundColor: Int,
+        strokeColor: Int
+    ) {
+        holder.binding.favoriteMealssRowLayout.setBackgroundColor(
+            ContextCompat.getColor(requireActivity, backgroundColor)
+        )
+        holder.binding.favoritesRowCardView.strokeColor = ContextCompat.getColor(
+            requireActivity,
+            strokeColor
+        )
     }
 
     override fun getItemCount(): Int = favoriteMeals.size
@@ -85,10 +123,15 @@ class FavoriteMealsAdapter(
     }
 
     override fun onDestroyActionMode(actionMode: ActionMode?) {
+        favoritesViewHolder.forEach { holder ->
+            changeMealStyle(holder, R.color.cardBackgroundColor, R.color.strokeColor)
+        }
+        multiSelection = false
+        selectMeals.clear()
         applyStatusBarColor(R.color.statusBarColor)
     }
 
-    private fun applyStatusBarColor(color: Int){
+    private fun applyStatusBarColor(color: Int) {
         requireActivity.window.statusBarColor = ContextCompat.getColor(requireActivity, color)
     }
 
