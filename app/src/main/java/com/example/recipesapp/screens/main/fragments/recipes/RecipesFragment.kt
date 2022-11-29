@@ -1,4 +1,4 @@
-package com.example.recipesapp.screens.main.fragment.recipes
+package com.example.recipesapp.screens.main.fragments.recipes
 
 import android.os.Bundle
 import android.util.Log

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/recipesFragment"
-        android:name="com.example.recipesapp.screens.main.fragment.recipes.RecipesFragment"
+        android:name="com.example.recipesapp.screens.main.fragments.recipes.RecipesFragment"
         android:label="Recipes"
         tools:layout="@layout/fragment_recipes" >
         <action
@@ -23,17 +23,21 @@
     </fragment>
     <fragment
         android:id="@+id/favoriteRecipesFragment"
-        android:name="com.example.recipesapp.screens.main.fragment.favorites.FavoriteRecipesFragment"
+        android:name="com.example.recipesapp.screens.main.fragments.favorites.FavoriteRecipesFragment"
         android:label="Favorites"
-        tools:layout="@layout/fragment_favorite_recipes" />
+        tools:layout="@layout/fragment_favorite_recipes" >
+        <action
+            android:id="@+id/action_favoriteRecipesFragment_to_detailsActivity"
+            app:destination="@id/detailsActivity" />
+    </fragment>
     <fragment
         android:id="@+id/categoriesFragment"
-        android:name="com.example.recipesapp.screens.main.fragment.categories.CategoriesFragment"
+        android:name="com.example.recipesapp.screens.main.fragments.categories.CategoriesFragment"
         android:label="Categories"
         tools:layout="@layout/fragment_categories" />
     <dialog
         android:id="@+id/mealsBottomSheet"
-        android:name="com.example.recipesapp.fragment.recipes.MealsBottomSheet"
+        android:name="com.example.recipesapp.screens.main.fragments.recipes.MealsBottomSheet"
         android:label="meals_bottom_sheet"
         tools:layout="@layout/meals_bottom_sheet" >
         <action
