@@ -15,6 +15,7 @@
     <color name="secondaryLightOrange">#fff263</color>
     <color name="secondaryDarkOrange">#c49000</color>
 
+    <color name="dark">#151B20</color>
 
     <color name="primaryTextColor">#212121</color>
     <color name="secondaryTextColor">#212121</color>
@@ -47,4 +48,8 @@
     // Favorites Star Color
     <color name="favoritesStarColor">#FFD600</color>
 
+    // Contextual Bar
+    <color name="statusBarColor">@color/purple_700</color>
+    <color name="contextualStatusBarColor">@color/dark</color>
+    <color name="contextualActionBarColor">@color/dark</color>
 </resources>
