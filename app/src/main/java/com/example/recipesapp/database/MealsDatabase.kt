@@ -10,7 +10,7 @@ import com.example.recipesapp.database.typeconverters.MealsTypeConverter
 
 @Database(
     entities = [MealsEntity::class, FavoritesEntity::class],
-    version = 2,
+    version = 1,
     exportSchema = false
 )
 @TypeConverters(MealsTypeConverter::class)
