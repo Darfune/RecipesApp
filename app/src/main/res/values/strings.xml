@@ -33,4 +33,5 @@
     <string name="save_to_favorites">Save To Favorites</string>
     <string name="no_meals_saved">No meals Saved</string>
     <string name="delete_favorite_meal_menu">Delete favorite meal menu</string>
+    <string name="delete_all">Delete All</string>
 </resources>
