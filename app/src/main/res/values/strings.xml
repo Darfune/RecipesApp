@@ -32,4 +32,5 @@
     <string name="ingredient_measurement">Ingredient Measurement</string>
     <string name="save_to_favorites">Save To Favorites</string>
     <string name="no_meals_saved">No meals Saved</string>
+    <string name="delete_favorite_meal_menu">Delete favorite meal menu</string>
 </resources>
