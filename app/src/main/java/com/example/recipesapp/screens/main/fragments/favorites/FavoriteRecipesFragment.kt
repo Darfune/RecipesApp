@@ -35,7 +35,7 @@ class FavoriteRecipesFragment : Fragment() {
         _binding = FragmentFavoriteRecipesBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = this
         binding.mainViewModel = mainViewModel
-        binding.favoriteMealsAdapter
+        binding.favoriteMealsAdapter = favoriteMealsAdapter
 
         setupRecyclerView(binding.favoriteMealsRecyclerView)
 
