@@ -16,11 +16,18 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class FavoriteRecipesFragment : Fragment() {
 
+    private val mainViewModel: MainViewModel by viewModels()
+
     private var _binding: FragmentFavoriteRecipesBinding? = null
     private val binding get() = _binding!!
 
-    private val favoriteMealsAdapter: FavoriteMealsAdapter by lazy { FavoriteMealsAdapter(requireActivity()) }
-    private val mainViewModel: MainViewModel by viewModels()
+    private val favoriteMealsAdapter: FavoriteMealsAdapter by lazy {
+        FavoriteMealsAdapter(
+            requireActivity(),
+            mainViewModel
+        )
+    }
+
 
 //    override fun onCreate(savedInstanceState: Bundle?) {
 //        super.onCreate(savedInstanceState)
