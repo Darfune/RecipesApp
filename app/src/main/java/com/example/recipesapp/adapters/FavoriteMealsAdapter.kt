@@ -17,9 +17,12 @@ class FavoriteMealsAdapter(
 ) : RecyclerView.Adapter<FavoriteMealsAdapter.FavoriteMealsViewHolder>(),
     ActionMode.Callback {
 
+    private lateinit var mActionMode: ActionMode
+
     private var multiSelection = false
     private var selectMeals = arrayListOf<FavoritesEntity>()
     private var favoritesViewHolder = arrayListOf<FavoriteMealsViewHolder>()
+
     private var favoriteMeals = emptyList<FavoritesEntity>()
 
     class FavoriteMealsViewHolder(val binding: FavoritesRowLayoutBinding) :
@@ -43,8 +46,8 @@ class FavoriteMealsAdapter(
         FavoriteMealsViewHolder.from(parent)
 
     override fun onBindViewHolder(holder: FavoriteMealsViewHolder, position: Int) {
-        holder.bind(favoriteMeals[position])
         favoritesViewHolder.add(holder)
+        holder.bind(favoriteMeals[position])
 
 
         /**
@@ -82,9 +85,11 @@ class FavoriteMealsAdapter(
         if (selectMeals.contains(currentMeal)) {
             selectMeals.remove(currentMeal)
             changeMealStyle(holder, R.color.cardBackgroundColor, R.color.strokeColor)
+            applyActionModeTitle()
         } else {
             selectMeals.add(currentMeal)
             changeMealStyle(holder, R.color.cardBackgroundLightColor, R.color.cardSelectedStroke)
+            applyActionModeTitle()
         }
     }
 
@@ -102,6 +107,14 @@ class FavoriteMealsAdapter(
         )
     }
 
+    private fun applyActionModeTitle() {
+        when (selectMeals.size) {
+            0 -> mActionMode.finish()
+            1 -> mActionMode.title = "${selectMeals.size} item selected"
+            else-> mActionMode.title = "${selectMeals.size} items selected"
+        }
+    }
+
     override fun getItemCount(): Int = favoriteMeals.size
 
     /**
@@ -110,6 +123,7 @@ class FavoriteMealsAdapter(
 
     override fun onCreateActionMode(actionMode: ActionMode?, menu: Menu?): Boolean {
         actionMode?.menuInflater?.inflate(R.menu.favorites_contextual_menu, menu)
+        mActionMode = actionMode!!
         applyStatusBarColor(R.color.contextualStatusBarColor)
         return true
     }
