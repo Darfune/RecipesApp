@@ -1,7 +1,8 @@
 package com.example.recipesapp.network
 
-import com.example.recipesapp.models.meals.ListOfMeals
-import com.example.recipesapp.models.meals.Meal
+import com.example.recipesapp.models.meals.full.ListOfMeals
+import com.example.recipesapp.models.meals.full.Meal
+import com.example.recipesapp.models.meals.shorter.ShortMealList
 import retrofit2.http.GET
 import retrofit2.http.Query
 import javax.inject.Singleton
@@ -14,18 +15,24 @@ interface RecipesApi {
         @Query("s") nameOfMeal: String? = null
     ): ListOfMeals
 
-//    @GET("filter.php")
-//    suspend fun getMealsByCategory(
-//        @Query("c") category: String
-//    ): MealsSmallList
-
     @GET("lookup.php?")
     suspend fun getMealById(
         @Query("i") id: String
     ): Meal
 
+    @GET("filter.php")
+    suspend fun getMealsByCategory(
+        @Query("c") category: String
+    ): ShortMealList
+
+    @GET("filter.php")
+    suspend fun getMealsByArea(
+        @Query("a") area: String
+    ): ShortMealList
+
     @GET("random.php")
     suspend fun getRandomMeal(): Meal
+
 
 
 }
