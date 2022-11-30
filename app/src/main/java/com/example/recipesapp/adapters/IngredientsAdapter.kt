@@ -1,6 +1,5 @@
 package com.example.recipesapp.adapters
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -8,9 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.recipesapp.R
 import com.example.recipesapp.databinding.IngredientsRowLayoutBinding
-import com.example.recipesapp.models.ingredients.Ingredient
-import com.example.recipesapp.models.ingredients.SmallIngredient
-import com.example.recipesapp.models.meals.Meal
+import com.example.recipesapp.models.ingredients.shorter.SmallIngredient
 import com.example.recipesapp.utils.Constants.Companion.BASE_ING_IMG_URL
 import com.example.recipesapp.utils.Constants.Companion.END_SMALL_IMG_URL
 import com.example.recipesapp.utils.MealsDiffUtils

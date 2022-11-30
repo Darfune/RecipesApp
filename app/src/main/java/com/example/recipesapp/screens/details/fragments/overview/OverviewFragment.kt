@@ -1,18 +1,13 @@
 package com.example.recipesapp.screens.details.fragments.overview
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import coil.load
-import com.example.recipesapp.R
-import com.example.recipesapp.databinding.FragmentIngredientsBinding
 import com.example.recipesapp.databinding.FragmentOverviewBinding
-import com.example.recipesapp.models.meals.Meal
+import com.example.recipesapp.models.meals.full.Meal
 
 class OverviewFragment : Fragment() {
 

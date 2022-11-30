@@ -32,12 +32,6 @@ class FavoriteRecipesFragment : Fragment() {
         )
     }
 
-
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//        mainViewModel = ViewModelProvider(requireActivity())[MainViewModel::class.java]
-//    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

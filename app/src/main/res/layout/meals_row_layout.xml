@@ -7,7 +7,7 @@
 
         <variable
             name="mealData"
-            type="com.example.recipesapp.models.meals.Meal" />
+            type="com.example.recipesapp.models.meals.full.Meal" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

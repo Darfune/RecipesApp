@@ -13,7 +13,7 @@ import com.example.recipesapp.data.Resource
 import com.example.recipesapp.database.dao.MealsDao
 import com.example.recipesapp.database.entities.FavoritesEntity
 import com.example.recipesapp.database.entities.MealsEntity
-import com.example.recipesapp.models.meals.ListOfMeals
+import com.example.recipesapp.models.meals.full.ListOfMeals
 import com.example.recipesapp.repository.RecipesRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers

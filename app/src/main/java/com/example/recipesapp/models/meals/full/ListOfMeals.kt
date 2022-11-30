@@ -1,4 +1,4 @@
-package com.example.recipesapp.models.meals
+package com.example.recipesapp.models.meals.full
 
 
 import com.google.gson.annotations.SerializedName

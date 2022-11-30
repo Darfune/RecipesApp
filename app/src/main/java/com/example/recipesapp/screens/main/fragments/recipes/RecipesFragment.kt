@@ -19,7 +19,7 @@ import com.example.recipesapp.R
 import com.example.recipesapp.adapters.MealsAdapter
 import com.example.recipesapp.data.Resource
 import com.example.recipesapp.databinding.FragmentRecipesBinding
-import com.example.recipesapp.models.meals.ListOfMeals
+import com.example.recipesapp.models.meals.full.ListOfMeals
 import com.example.recipesapp.utils.NetworkListener
 import com.example.recipesapp.utils.observeOnce
 import dagger.hilt.android.AndroidEntryPoint

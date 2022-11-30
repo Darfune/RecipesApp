@@ -2,8 +2,7 @@ package com.example.recipesapp.repository
 
 import android.util.Log
 import com.example.recipesapp.data.Resource
-import com.example.recipesapp.models.meals.ListOfMeals
-import com.example.recipesapp.models.meals.Meal
+import com.example.recipesapp.models.meals.full.ListOfMeals
 import com.example.recipesapp.network.RecipesApi
 import dagger.hilt.android.scopes.ActivityRetainedScoped
 import javax.inject.Inject
@@ -32,7 +31,7 @@ class RecipesRepository @Inject constructor(
 //        return Resource.Success(response)
 //    }
 
-//    suspend fun getMealById(id: String): Resource<Meal> {
+//    suspend fun getMealById(id: String): Resource<Area> {
 //        val response = try {
 //            recipesApi.getMealById(id)
 //        } catch (exc: Exception) {
@@ -42,7 +41,7 @@ class RecipesRepository @Inject constructor(
 //        return Resource.Success(response)
 //    }
 //
-//    suspend fun getRandomMeal(): Resource<Meal> {
+//    suspend fun getRandomMeal(): Resource<Area> {
 //        val response = try {
 //            recipesApi.getRandomMeal()
 //        } catch (exc: Exception) {

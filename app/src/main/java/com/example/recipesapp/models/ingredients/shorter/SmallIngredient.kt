@@ -1,4 +1,4 @@
-package com.example.recipesapp.models.ingredients
+package com.example.recipesapp.models.ingredients.shorter
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName

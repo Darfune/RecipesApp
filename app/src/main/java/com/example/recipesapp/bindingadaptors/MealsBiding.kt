@@ -6,7 +6,7 @@ import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.example.recipesapp.data.Resource
 import com.example.recipesapp.database.entities.MealsEntity
-import com.example.recipesapp.models.meals.ListOfMeals
+import com.example.recipesapp.models.meals.full.ListOfMeals
 
 class MealsBiding {
 

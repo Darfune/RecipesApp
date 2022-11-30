@@ -26,7 +26,7 @@ class MealsViewModel @Inject constructor(
     val readMealCategory = dataStoreRepository.readMealCategory
     val readBackOnline = dataStoreRepository.readBackOnline.asLiveData()
 
-    // Search Meal
+    // Search Area
     fun applySearchQuery(searchQuery: String): String = searchQuery
 
 
