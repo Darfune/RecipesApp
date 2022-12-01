@@ -5,11 +5,15 @@ class Constants {
     companion object{
         // Retrofit
         const val BASE_URL = "https://www.themealdb.com/api/json/v1/1/"
+        // Base For Images
+        const val BASE_IMG_URL = "https://www.themealdb.com/images/"
+        const val END_IMG_URL = ".png"
         // For Ingredients
-        const val BASE_ING_IMG_URL = "https://www.themealdb.com/images/ingredients/"
-        const val END_SMALL_IMG_URL = "-Small.png"
+        const val ING_IMG_URL = "ingredients/"
+        // For Categories
+        const val CTG_IMG_URL = "category/"
         // For Flags
-        const val BASE_FLG_IMG_URL = "https://www.themealdb.com/images/icons/flags/big"
+        const val FLG_IMG_URL = "icons/flags/big"
         const val FLG_M_IMG_SIZE = "/64/"
         const val FLG_L_IMG_SIZE = "/128/"
         const val END_FLG_IMG_URL = ".png"

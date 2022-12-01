@@ -8,8 +8,9 @@ import coil.load
 import com.example.recipesapp.R
 import com.example.recipesapp.databinding.IngredientsRowLayoutBinding
 import com.example.recipesapp.models.ingredients.shorter.SmallIngredient
-import com.example.recipesapp.utils.Constants.Companion.BASE_ING_IMG_URL
-import com.example.recipesapp.utils.Constants.Companion.END_SMALL_IMG_URL
+import com.example.recipesapp.utils.Constants.Companion.BASE_IMG_URL
+import com.example.recipesapp.utils.Constants.Companion.ING_IMG_URL
+import com.example.recipesapp.utils.Constants.Companion.END_IMG_URL
 import com.example.recipesapp.utils.MealsDiffUtils
 
 class IngredientsAdapter: RecyclerView.Adapter<IngredientsAdapter.IngredientsViewHolder>() {
@@ -22,7 +23,7 @@ class IngredientsAdapter: RecyclerView.Adapter<IngredientsAdapter.IngredientsVie
         IngredientsViewHolder(IngredientsRowLayoutBinding.inflate(LayoutInflater.from(parent.context),parent,false))
 
     override fun onBindViewHolder(holder: IngredientsViewHolder, position: Int) {
-        holder.binding.ingredientImageView.load(BASE_ING_IMG_URL + ingredientsList[position].strIngredientName + END_SMALL_IMG_URL) {
+        holder.binding.ingredientImageView.load(BASE_IMG_URL + ING_IMG_URL + ingredientsList[position].strIngredientName + END_IMG_URL) {
             crossfade(600)
             error(R.drawable.ic_meal_placeholder)
         }
