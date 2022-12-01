@@ -2,7 +2,7 @@ package com.example.recipesapp.database.typeconverters
 
 import androidx.room.TypeConverter
 import com.example.recipesapp.models.meals.full.ListOfMeals
-import com.example.recipesapp.models.meals.full.Meal
+import com.example.recipesapp.models.meals.Meal
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 

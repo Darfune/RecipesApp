@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import coil.load
 import com.example.recipesapp.databinding.FragmentOverviewBinding
-import com.example.recipesapp.models.meals.full.Meal
+import com.example.recipesapp.models.meals.Meal
 
 class OverviewFragment : Fragment() {
 

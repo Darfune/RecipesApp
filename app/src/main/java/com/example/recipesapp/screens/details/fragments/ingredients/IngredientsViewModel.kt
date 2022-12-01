@@ -3,7 +3,7 @@ package com.example.recipesapp.screens.details.fragments.ingredients
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import com.example.recipesapp.models.ingredients.shorter.SmallIngredient
-import com.example.recipesapp.models.meals.full.Meal
+import com.example.recipesapp.models.meals.Meal
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 

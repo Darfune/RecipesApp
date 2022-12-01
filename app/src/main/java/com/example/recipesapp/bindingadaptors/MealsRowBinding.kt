@@ -7,7 +7,7 @@ import androidx.databinding.BindingAdapter
 import androidx.navigation.findNavController
 import coil.load
 import com.example.recipesapp.R
-import com.example.recipesapp.models.meals.full.Meal
+import com.example.recipesapp.models.meals.Meal
 import com.example.recipesapp.screens.main.fragments.recipes.RecipesFragmentDirections
 
 class MealsRowBinding {

@@ -1,6 +1,7 @@
 package com.example.recipesapp.models.meals.full
 
 
+import com.example.recipesapp.models.meals.Meal
 import com.google.gson.annotations.SerializedName
 
 data class ListOfMeals(

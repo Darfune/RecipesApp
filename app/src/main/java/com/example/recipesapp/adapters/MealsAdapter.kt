@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.recipesapp.databinding.MealsRowLayoutBinding
 import com.example.recipesapp.models.meals.full.ListOfMeals
-import com.example.recipesapp.models.meals.full.Meal
+import com.example.recipesapp.models.meals.Meal
 import com.example.recipesapp.utils.MealsDiffUtils
 
 class MealsAdapter : RecyclerView.Adapter<MealsAdapter.MealsViewHolder>() {

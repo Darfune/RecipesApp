@@ -1,4 +1,4 @@
-package com.example.recipesapp.models.meals.full
+package com.example.recipesapp.models.meals
 
 
 import android.os.Parcelable

@@ -3,7 +3,7 @@ package com.example.recipesapp.network
 import com.example.recipesapp.models.areas.Areas
 import com.example.recipesapp.models.categories.Categories
 import com.example.recipesapp.models.meals.full.ListOfMeals
-import com.example.recipesapp.models.meals.full.Meal
+import com.example.recipesapp.models.meals.Meal
 import com.example.recipesapp.models.meals.shorter.ShortMealList
 import retrofit2.http.GET
 import retrofit2.http.Query

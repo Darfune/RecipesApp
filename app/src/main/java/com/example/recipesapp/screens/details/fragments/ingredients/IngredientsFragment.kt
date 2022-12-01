@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.recipesapp.adapters.IngredientsAdapter
 import com.example.recipesapp.databinding.FragmentIngredientsBinding
 import com.example.recipesapp.models.ingredients.shorter.SmallIngredient
-import com.example.recipesapp.models.meals.full.Meal
+import com.example.recipesapp.models.meals.Meal
 
 class IngredientsFragment : Fragment() {
 
