@@ -34,4 +34,6 @@
     <string name="no_meals_saved">No meals Saved</string>
     <string name="delete_favorite_meal_menu">Delete favorite meal menu</string>
     <string name="delete_all">Delete All</string>
+    <string name="categories">Categories</string>
+    <string name="areas">Areas</string>
 </resources>
