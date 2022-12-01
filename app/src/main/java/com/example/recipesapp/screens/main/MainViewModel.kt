@@ -14,6 +14,7 @@ import com.example.recipesapp.database.dao.MealsDao
 import com.example.recipesapp.database.entities.FavoritesEntity
 import com.example.recipesapp.database.entities.MealsEntity
 import com.example.recipesapp.models.meals.full.ListOfMeals
+import com.example.recipesapp.models.meals.shorter.ShortMealList
 import com.example.recipesapp.repository.RecipesRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -52,12 +53,15 @@ class MainViewModel @Inject constructor(
             mealsDao.deleteAllFavoriteMeals()
         }
 
+    // Insert data to database
+    private fun offlineCacheMealRecipes(mealRecipe: ListOfMeals) =
+        insertMeals(MealsEntity(mealRecipe))
+
 
     // Retrofit API
 
     var mealsResponse: MutableLiveData<Resource<ListOfMeals>> = MutableLiveData()
     var searchedMealsResponse: MutableLiveData<Resource<ListOfMeals>> = MutableLiveData()
-    //    var mealsByCategoryResponse: MutableLiveData<Resource<MealsSmallList>> = MutableLiveData()
 
 
     var isLoading: Boolean by mutableStateOf(true)
@@ -102,37 +106,6 @@ class MainViewModel @Inject constructor(
             Log.d("MainViewModel", "getMeals: ${exception.message.toString()}")
         }
     }
-
-    /*
-    fun getMealsByCategory(category: String) = viewModelScope.launch {
-        if (hasInternetConnection()) {
-            try {
-                when (val result = recipesRepository.getMealsByCategory(category)) {
-                    is Resource.Success -> {
-                        mealsByCategoryResponse.value = result
-                        Log.d("MainViewModel", "getMealsByCategory: ${mealsResponse.value}")
-                        isLoading = false
-//                        val mealsCategory = mealsByCategoryResponse.value!!.data
-//                        if (mealsByCategoryResponse != null) {
-//                            offlineCacheMealRecipes(mealsByCategoryResponse)
-//                        }
-                    }
-                    is Resource.Error -> {
-                        Log.e("MainViewModel", "mealsByCategoryResponse: Failed to get response")
-                        isLoading = false
-                    }
-                    else -> isLoading = false
-                }
-            } catch (exception: Exception) {
-                Log.d("MainViewModel", "mealsByCategoryResponse: ${exception.message.toString()}")
-            }
-        } else mealsResponse.value = Resource.Error("No Internet Connection")
-    }
-    */
-
-    // Insert data to database
-    private fun offlineCacheMealRecipes(mealRecipe: ListOfMeals) =
-        insertMeals(MealsEntity(mealRecipe))
 
     // Internet permission
     private fun hasInternetConnection(): Boolean {
