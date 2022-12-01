@@ -1,5 +1,7 @@
 package com.example.recipesapp.network
 
+import com.example.recipesapp.models.areas.Areas
+import com.example.recipesapp.models.categories.Categories
 import com.example.recipesapp.models.meals.full.ListOfMeals
 import com.example.recipesapp.models.meals.full.Meal
 import com.example.recipesapp.models.meals.shorter.ShortMealList
@@ -29,6 +31,16 @@ interface RecipesApi {
     suspend fun getMealsByArea(
         @Query("a") area: String
     ): ShortMealList
+
+    @GET("filter.php")
+    suspend fun getCategories(
+        @Query("c") list: String = "list"
+    ): Categories
+
+    @GET("filter.php")
+    suspend fun getAreas(
+        @Query("a") list: String = "list"
+    ): Areas
 
     @GET("random.php")
     suspend fun getRandomMeal(): Meal
