@@ -5,5 +5,5 @@ import com.google.gson.annotations.SerializedName
 
 data class Areas(
     @SerializedName("areas")
-    val meals: List<Area>
+    val areas: List<Area>
 )
