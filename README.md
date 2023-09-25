@@ -1,5 +1,5 @@
 # RecipesApp
-A simple Kotlin app that uses [TheMealDB's API](https://www.themealdb.com/api.php) to show several recipes from around the world.
+A simple Kotlin app that uses [TheMealDB's API](https://www.themealdb.com/api.php) to display several recipes from around the world.
 
 ## Made Using
 The app is made with Kotlin and XML. It uses :
